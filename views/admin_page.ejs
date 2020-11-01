@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Ruft Blog</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400,500" rel="stylesheet">
+    <!--
+			CSS
+			============================================= -->
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <table class="table table-sm table-nowrap card-table">
+        <thead>
+            <tr>
+                <th style="text-align: center;">고유값</th>
+                <th style="text-align: center;">PID</th>
+                <th style="text-align: center;">핸드폰</th>
+                <th style="text-align: center;">상태</th>
+                <th style="text-align: center;">페이지 방문횟수</th>
+                <th style="text-align: center;">최종 방문 시간</th>
+                <th style="text-align: center;">최종 방문 IP</th>
+                <th style="text-align: center;">처음 방문 시간</th>
+
+            </tr>
+        </thead>
+
+        <tbody class="list" id="table-body">
+
+
+        </tbody>
+    </table>
+</body>
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script src="js/easing.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+</html>
+
+<script>
+    var type = Cookies.get("type")
+
+    header()
+
+    function header() {
+        var html = ""
+
+        if (type == 1) {
+            html += '<li class="menu-active"><a href="/">Home</a></li>'
+            html += '<li><a href="category">Category</a></li>'
+            html += '<li><a href="login">login</a></li>'
+            html += '<li><a href="contact">write</a></li>'
+            html += '<li><a href="admin">admin</a></li>'
+            $('#header_list').html(html)
+        } else {
+            html += '<li class="menu-active"><a href="/">Home</a></li>'
+            html += '<li><a href="category">Category</a></li>'
+            html += '<li><a href="login">login</a></li>'
+            $('#header_list').html(html)
+        }
+    }
+
+
+    list()
+
+    function list() {
+
+
+        $.ajax({
+            url: '/detail',
+            dataType: 'json',
+            type: 'get',
+
+            success: function (data) {
+                //DB에서 받아온 모든 데이터를 활용해서 for문을 돌려서 list를 뿌리기
+                var data = data
+                var html = ''
+                for (var i = 0; i < data.length; i++) {
+                    var pk_id = data[i].pk_id
+                    var title = data[i].title
+                    var img = data[i].img
+                    var insert_time = data[i].date
+                    var date = new Date(insert_time / 1000);
+                    var start_time = date
+                        .getFullYear()
+                        .toString() + "-" + (
+                            date.getMonth() + 1
+                        )
+                            .toString() + "-" + date
+                                .getDate()
+                                .toString() + "-" + date
+                                    .getHours() + ":" + date
+                                        .getMinutes()
+
+                    html += ' <section class="post-area">'
+                    html += '<div class="single-post-item">'
+                    html += '<div class="single-post-item">'
+                    html += '<figure>'
+                    html += '<img class="post-img img-fluid" src="img/upload_img/' + img + '">'
+                    html += '</figure>'
+                    html += '<h3> ' + title + ''
+                    html += '<h4> ' + start_time + '</h4>'
+                    html += '</h3>'
+                    html += '<button class="primary-btn text-uppercase mt-15" onclick="link_to_detail(' + pk_id + ')">continue Reading</button>'
+                    html += '</div>'
+                    html += '</section>'
+                    $('#section_id').html(html)
+
+                }
+
+
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        })
+
+    }
+
+    //다음 페이지로 이동 시켜줄때 PK_id를 받아와서 해당 데이터의 데이터만 보여주기 
+    function link_to_detail(pk_id) {
+        var pk_id = pk_id
+        localStorage.setItem("#pk_id", pk_id);
+        location.href = "blog"
+    }
+</script>

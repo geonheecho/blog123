@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Blog Details</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400,500" rel="stylesheet">
+    <!--CSS============================================= -->
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/heart.css">
+</head>
+
+<body>
+    <header id="header">
+        <div class="container box_1170 main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="index"></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu" id="header_list">
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- start banner Area -->
+    <section class="banner-area relative">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        Blog
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+    <!-- Blog Area -->
+    <section class="blog_area section-gap single-post-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main_blog_details" id="content_data">
+                    </div>
+                    <div class="comments-area">
+                        <div class="comment-list" id="comment_list">
+                            <div class="single-comment justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <div>
+                                <h3>Leave a Reply
+                                    <div class="heart-btn">
+                                        <div class="content">
+                                            <span class="heart"></span>
+                                            <span class="text">Like<br></span>
+                                            <span class="numb" id="number_like"
+                                                style="font-family: 'Montserrat',sans-serif;color: grey;"></span>
+                                        </div>
+                                    </div>
+                                </h3>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                </div>
+                                <textarea class="form-control mb-10" rows="5" name="message" id="message"
+                                    placeholder="Messege" required="true"></textarea>
+                                <input type="button" class="primary-btn submit_btn text-uppercase" value="Send Message"
+                                    onclick="form_list()">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Area -->
+
+    <!-- start footer Area -->
+    <footer class="footer-area">
+        <div class="container box_1170">
+            <div class="row footer-bottom d-flex justify-content-between align-items-center">
+                <p class="col-lg-12 footer-text text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    Shane and Gunhee
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="js/easing.min.js"></script>
+    <script src="js/hoverIntent.js"></script>
+    <script src="js/superfish.min.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="//cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+</body>
+
+</html>
+
+<script>
+    //index.page 받아요 pk_id 
+    var pk_id = localStorage.getItem("#pk_id", pk_id);
+    var type = Cookies.get("type")
+
+
+
+
+    header()
+
+    function header() {
+        var html = ""
+        if (type == "" || type == undefined || type == '') {
+            html += '<li class="menu-active"><a href="/">Home</a></li>'
+            html += '<li><a href="login">login</a></li>'
+            // html += '<li><a href="community">community</a></li>'
+            $('#header_list').html(html)
+        } else if (type == 1 || type == 2) {
+            html += '<li class="menu-active"><a href="/">Home</a></li>'
+            html += '<li><a href="logout">로그아웃</a></li>'
+            html += '<li><a href="community">커뮤니티게시판</a></li>'
+
+            $('#header_list').html(html)
+        }
+    }
+
+    title()
+    comment()
+
+    function title() {
+
+        var data = {
+            pk_id: pk_id
+        }
+
+        $.ajax({
+            url: "/community_content",
+            dataType: 'json',
+            type: 'get',
+            data: data,
+            success: function (data) {
+                var title = data[0].title
+                var html = ''
+                var pk_id = data[0].pk_id
+                var content = data[0].content
+                var insert_time = data[0].date
+                var date = new Date(insert_time / 1000);
+                var start_time = date
+                    .getFullYear()
+                    .toString() + "-" + (
+                        date.getMonth() + 1
+                    )
+                        .toString() + "-" + date
+                            .getDate()
+                            .toString() + "-" + date
+                                .getHours() + ":" + date
+                                    .getMinutes()
+                if (type == 2) {
+                    html += ' <h2> ' + title + '</h2>'
+                    html += '<br>'
+                    html += ' <h5> ' + start_time + '</h5>'
+                    html += '</>'
+                    html += '<img class="img-fluid" alt="">'
+                    html += '<div class="user_details">'
+                    html += '<div class="float-left">'
+                    html += '</div>'
+                    // html += '<div class="float-right">'
+                    html += '<div class="media">'
+                    html += '<div class="media-body">'
+                    html += '</div>'
+                    html += '<div class="d-flex">'
+                    html += '</div>'
+                    html += '</div>'
+                    html += '</div>'
+                    html += '</div>'
+                    html += ' <h3> ' + content + '</h3>'
+                    html += '<br><br><br><br><br><br>'
+                    html += '<input class="form-control" id="data_pk_id" name="pk_id" value=' + pk_id + ' hidden>'
+                    html += '<div>'
+                    html += '<button class="btn btn-primary"  onclick=edit(' + pk_id + ') >수정하기</button>'
+                    html += '<button class="btn btn-primary"  onclick=delete_sql(' + pk_id + ')>삭제</button>'
+                    html += '</div>'
+                    $("#content_data").html(html)
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+
+
+
+
+    //edit 수정하는 function
+
+    function edit(pk_id) {
+
+        localStorage.setItem("#pk_id", pk_id);
+        console.log("edit -> pk_id1231231231232", pk_id)
+        location.href = "community_edit_db"
+    }
+
+
+
+
+
+    function delete_sql(pk_id) {
+        var pk_id = $("#data_pk_id").val();
+        console.log("functiondelete_sql -> pk_id", pk_id)
+        var pk_id = pk_id;
+        console.log("functiondelete_sql -> pk_id", pk_id)
+
+        var data = {
+            pk_id: pk_id,
+        }
+        $.ajax({
+            url: "/community_delete",
+            dataType: "json",
+            type: "post",
+            data: data,
+            success: function (data) {
+                console.log("functiondelete_sql321312321 -> data", data)
+                alert("삭제되었습니다.");
+                history.go(-1);
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+</script>
